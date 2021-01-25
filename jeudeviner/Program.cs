@@ -26,14 +26,38 @@ namespace jeudeviner
 
         static private int demanderUser(int essai)
         {
+            Console.WriteLine("Est-ce que votre nombre est {0}?", (object)essai);
 
+            Console.Write("1-Trop grand    2-Trop petit    3-Vous avez trouvé!!!!    :");
+            return int.Parse(Console.ReadLine());
         }
 
         static private int FaireDeviner(int max)
         {
             int essai;
+            int reponse;
+            int nombrecoups;
 
             essai = max / 2;
+            reponse = demanderUser(essai);
+            nombrecoups =+ 1;
+
+            while (reponse != 3)
+            {
+                switch (reponse)
+                {
+                    case 1:
+                        essai = essai / 2;
+                        break;
+                    case 2:
+                        essai = essai + essai / 2;
+                        break;
+                }
+                reponse = demanderUser(essai);
+                nombrecoups =+ 1;
+            } 
+
+            return nombrecoups;
         }
         static void Main(string[] args)
         {
@@ -69,7 +93,7 @@ namespace jeudeviner
             Console.ReadKey();
 
             Console.Clear(); //pour enlever les trucs dans la console
-            Console.Write("Entrez le nombre à faire deviner à l'ordinateur entre 0 et  : " );
+            Console.Write("Entrez le nombre à faire deviner à l'ordinateur entre 0 et " + max + " : ");
 
             nombreATrouver = int.Parse(Console.ReadLine());
             if (nombreATrouver > max)

@@ -31,7 +31,7 @@ namespace jeudeviner
             int nombreCoupsUser = 0;
             int nombreCoupsOrdi = 0;
             int nombreChoisi;
-
+            int nombreATrouver;
             int max;
 
             Console.Write("Entrez la valeur maximale du nombre qui sera généré : ");
@@ -39,12 +39,12 @@ namespace jeudeviner
             max = int.Parse(Console.ReadLine());
             
             Console.WriteLine("L'ordinateur a choisi son nombre, appuyez sur une touche pour commencer.");
-            int nombreATrouver = random.Next(0, max);
+            nombreATrouver = random.Next(0, max);
             Console.WriteLine(nombreATrouver); //pour debug
             Console.ReadKey();
 
             Console.Clear();
-            //Loop pour faire devinner l'humain
+            //Loop pour faire deviner l'humain
             do
             {
                 Console.Write("Entrez un nombre : ");
@@ -56,8 +56,19 @@ namespace jeudeviner
             Console.WriteLine("Vous avez trouvé le chiffre en question en {0} coups", (object)nombreCoupsUser);
             Console.ReadKey();
 
+            Console.Clear(); //pour enlever les trucs dans la console
             Console.Write("Entrez le nombre à faire deviner à l'ordinateur : ");
-    
+
+            nombreATrouver = int.Parse(Console.ReadLine());
+            if (nombreATrouver > max)
+            {
+                do
+                {
+                    Console.WriteLine("Le nombre entré est plus grand que le maximum défini");
+                    Console.Write("Veuillez entrer un nombre valide ici : ");
+                    nombreATrouver = int.Parse(Console.ReadLine());
+                } while (nombreATrouver > max);
+            }
 
         }
     }

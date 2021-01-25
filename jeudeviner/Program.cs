@@ -26,7 +26,7 @@ namespace jeudeviner
 
         static private int demanderUser(int essai)
         {
-            Console.WriteLine("Est-ce que votre nombre est {0}?", (object)essai);
+            Console.WriteLine("Est-ce que votre nombre est {0}?", essai);
 
             Console.Write("1-Trop grand    2-Trop petit    3-Vous avez trouvé!!!!    :");
             return int.Parse(Console.ReadLine());
@@ -36,7 +36,7 @@ namespace jeudeviner
         {
             int essai;
             int reponse;
-            int nombrecoups = 0;
+            int nombrecoups;
             int min = 1;
 
             essai = max / 2;
@@ -98,7 +98,7 @@ namespace jeudeviner
             }
             else
             {
-                Console.WriteLine("Vous avez deviné le chiffre en {0} coups", (object)nombreCoupsUser);
+                Console.WriteLine("Vous avez deviné le chiffre en {0} coups", nombreCoupsUser);
             }
             Console.ReadKey();
 
@@ -120,7 +120,22 @@ namespace jeudeviner
 
             Console.WriteLine("L'ordinateur va maintenant essayer de deviner");
 
-            nombreCoupsOrdi = FaireDeviner(max);
+            nombreCoupsOrdi = FaireDeviner(max); //fait deviner a lordinateur
+
+            Console.Clear();
+
+            Console.WriteLine("Nombre coups utilisateur : " + nombreCoupsUser);
+            Console.WriteLine("Nombre coups ordinateur : " + nombreCoupsOrdi);
+
+            if (nombreCoupsOrdi > nombreCoupsUser)
+            {
+                Console.WriteLine("L'humain a vaincu la machine!!");
+            }
+            else if (nombreCoupsOrdi < nombreCoupsUser)
+            {
+                Console.WriteLine("L'ordinateur a gagne!!!!!");
+            }
+
 
         }
     }

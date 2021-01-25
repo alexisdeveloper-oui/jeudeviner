@@ -36,7 +36,8 @@ namespace jeudeviner
         {
             int essai;
             int reponse;
-            int nombrecoups;
+            int nombrecoups = 0;
+            int min = 1;
 
             essai = max / 2;
             reponse = demanderUser(essai);
@@ -47,14 +48,16 @@ namespace jeudeviner
                 switch (reponse)
                 {
                     case 1:
-                        essai = essai / 2;
+                        max = essai;
+                        essai = ((max - min) / 2) + min;
                         break;
                     case 2:
-                        essai = essai + essai / 2;
+                        min = essai;
+                        essai = ((max - min) / 2) + min;
                         break;
                 }
                 reponse = demanderUser(essai);
-                nombrecoups =+ 1;
+                nombrecoups++;
             } 
 
             return nombrecoups;
@@ -89,7 +92,14 @@ namespace jeudeviner
                 nombreCoupsUser++;
             } while (nombreChoisi != nombreATrouver);
 
-            Console.WriteLine("Vous avez trouvé le chiffre en question en {0} coups", (object)nombreCoupsUser);
+            if (nombreCoupsUser == 1)
+            {
+                Console.WriteLine("Vous avez deviné le chiffre en 1 coup");
+            }
+            else
+            {
+                Console.WriteLine("Vous avez deviné le chiffre en {0} coups", (object)nombreCoupsUser);
+            }
             Console.ReadKey();
 
             Console.Clear(); //pour enlever les trucs dans la console

@@ -64,79 +64,88 @@ namespace jeudeviner
         }
         static void Main(string[] args)
         {
-
             Random random = new Random();
 
-            int nombreCoupsUser = 0;
-            int nombreCoupsOrdi = 0;
-            int nombreChoisi;
-            int nombreATrouver;
-            int max;
+            string rep;
 
-            Console.Write("Entrez la valeur maximale du nombre qui sera généré : ");
-
-            max = int.Parse(Console.ReadLine());
-            
-            Console.WriteLine("L'ordinateur a choisi son nombre, appuyez sur une touche pour commencer.");
-            nombreATrouver = random.Next(0, max);
-            Console.WriteLine(nombreATrouver); //pour debug
-            Console.ReadKey();
-
-            Console.Clear();
-            //Loop pour faire deviner l'humain
             do
             {
-                Console.Write("Entrez un nombre : ");
-                nombreChoisi = int.Parse(Console.ReadLine());
-                Console.WriteLine(Message(nombreATrouver, nombreChoisi));
-                nombreCoupsUser++;
-            } while (nombreChoisi != nombreATrouver);
+                Console.Clear();
 
-            if (nombreCoupsUser == 1)
-            {
-                Console.WriteLine("Vous avez deviné le chiffre en 1 coup");
-            }
-            else
-            {
-                Console.WriteLine("Vous avez deviné le chiffre en {0} coups", nombreCoupsUser);
-            }
-            Console.ReadKey();
+                int nombreCoupsUser = 0;
+                int nombreCoupsOrdi = 0;
+                int nombreChoisi;
+                int nombreATrouver;
+                int max;
 
-            Console.Clear(); //pour enlever les trucs dans la console
-            Console.Write("Entrez le nombre à faire deviner à l'ordinateur entre 0 et " + max + " : ");
+                Console.Write("Entrez la valeur maximale du nombre qui sera généré : ");
 
-            nombreATrouver = int.Parse(Console.ReadLine());
-            if (nombreATrouver > max)
-            {
+                max = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("L'ordinateur a choisi son nombre, appuyez sur une touche pour commencer.");
+                nombreATrouver = random.Next(0, max);
+                Console.WriteLine(nombreATrouver); //pour debug
+                Console.ReadKey();
+
+                Console.Clear();
+                //Loop pour faire deviner l'humain
                 do
                 {
-                    Console.WriteLine("Le nombre entré est plus grand que le maximum défini");
-                    Console.Write("Veuillez entrer un nombre valide ici : ");
-                    nombreATrouver = int.Parse(Console.ReadLine());
-                } while (nombreATrouver > max);
-            }
+                    Console.Write("Entrez un nombre : ");
+                    nombreChoisi = int.Parse(Console.ReadLine());
+                    Console.WriteLine(Message(nombreATrouver, nombreChoisi));
+                    nombreCoupsUser++;
+                } while (nombreChoisi != nombreATrouver);
 
-            Console.Clear();
+                if (nombreCoupsUser == 1)
+                {
+                    Console.WriteLine("Vous avez deviné le chiffre en 1 coup");
+                }
+                else
+                {
+                    Console.WriteLine("Vous avez deviné le chiffre en {0} coups", nombreCoupsUser);
+                }
+                Console.ReadKey();
 
-            Console.WriteLine("L'ordinateur va maintenant essayer de deviner");
+                Console.Clear(); //pour enlever les trucs dans la console
+                Console.Write("Entrez le nombre à faire deviner à l'ordinateur entre 0 et " + max + " : ");
 
-            nombreCoupsOrdi = FaireDeviner(max); //fait deviner a lordinateur
+                nombreATrouver = int.Parse(Console.ReadLine());
+                if (nombreATrouver > max)
+                {
+                    do
+                    {
+                        Console.WriteLine("Le nombre entré est plus grand que le maximum défini");
+                        Console.Write("Veuillez entrer un nombre valide ici : ");
+                        nombreATrouver = int.Parse(Console.ReadLine());
+                    } while (nombreATrouver > max);
+                }
 
-            Console.Clear();
+                Console.Clear();
 
-            Console.WriteLine("Nombre coups utilisateur : " + nombreCoupsUser);
-            Console.WriteLine("Nombre coups ordinateur : " + nombreCoupsOrdi);
+                Console.WriteLine("L'ordinateur va maintenant essayer de deviner");
 
-            if (nombreCoupsOrdi > nombreCoupsUser)
-            {
-                Console.WriteLine("L'humain a vaincu la machine!!");
-            }
-            else if (nombreCoupsOrdi < nombreCoupsUser)
-            {
-                Console.WriteLine("L'ordinateur a gagne!!!!!");
-            }
+                nombreCoupsOrdi = FaireDeviner(max); //fait deviner a lordinateur
 
+                Console.Clear();
 
+                Console.WriteLine("Nombre coups utilisateur : " + nombreCoupsUser);
+                Console.WriteLine("Nombre coups ordinateur : " + nombreCoupsOrdi);
+
+                if (nombreCoupsOrdi > nombreCoupsUser)
+                {
+                    Console.WriteLine("L'humain a vaincu la machine!!");
+                }
+                else if (nombreCoupsOrdi < nombreCoupsUser)
+                {
+                    Console.WriteLine("L'ordinateur a gagne!!!!!");
+                }
+                Console.ReadKey();
+
+                Console.Write("Voulez-vous continuer? (o ou n) : ");
+                rep = Console.ReadLine();
+
+            } while (rep[0] == 'o');
         }
     }
 }

@@ -23,6 +23,18 @@ namespace jeudeviner
                 return "Erreur...";
             }
         }
+
+        static private int demanderUser(int essai)
+        {
+
+        }
+
+        static private int FaireDeviner(int max)
+        {
+            int essai;
+
+            essai = max / 2;
+        }
         static void Main(string[] args)
         {
 
@@ -57,7 +69,7 @@ namespace jeudeviner
             Console.ReadKey();
 
             Console.Clear(); //pour enlever les trucs dans la console
-            Console.Write("Entrez le nombre à faire deviner à l'ordinateur : ");
+            Console.Write("Entrez le nombre à faire deviner à l'ordinateur entre 0 et  : " );
 
             nombreATrouver = int.Parse(Console.ReadLine());
             if (nombreATrouver > max)
@@ -69,6 +81,12 @@ namespace jeudeviner
                     nombreATrouver = int.Parse(Console.ReadLine());
                 } while (nombreATrouver > max);
             }
+
+            Console.Clear();
+
+            Console.WriteLine("L'ordinateur va maintenant essayer de deviner");
+
+            nombreCoupsOrdi = FaireDeviner(max);
 
         }
     }
